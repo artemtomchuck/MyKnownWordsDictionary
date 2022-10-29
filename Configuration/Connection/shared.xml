@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+this file should be deployed into C:\Users\<username>\.kettle folder (make sure that PDI is closed while you are deploying this file).
+If you already have this file then merge connection string section for dictionary_db entry from this file into your file.
+Currently for MyKnownWordsDictionary project this file is used only for storing connection string which is shared between all code.
+-->
+<sharedobjects>
+  <connection>
+    <name>dictionary_db</name>
+    <server>there is no database host in sqlite db. The file name with database is already specified in &#34;Database Name&#34; column</server>
+    <type>SQLITE</type>
+    <access>Native</access>
+    <database>${connection_string_dictionary_db_file_fullpath}</database>
+    <port>-1</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>-1</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+
+</sharedobjects>
