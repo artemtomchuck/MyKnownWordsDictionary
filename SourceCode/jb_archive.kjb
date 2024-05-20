@@ -398,7 +398,7 @@
       <description/>
       <type>ZIP_FILE</type>
       <attributes/>
-      <zipfilename>${application_local_data_dir_fullpath}/archive/${current_run_timestamp}.zip</zipfilename>
+      <zipfilename>${application_local_data_dir_fullpath}/archive/source_language/${source_language}/${current_run_timestamp}.zip</zipfilename>
       <compressionrate>1</compressionrate>
       <ifzipfileexists>2</ifzipfileexists>
       <wildcard/>
