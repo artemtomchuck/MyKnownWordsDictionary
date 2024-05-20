@@ -305,7 +305,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
+      <xloc>384</xloc>
       <yloc>32</yloc>
       <attributes_kjc/>
     </entry>
@@ -317,8 +317,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>576</yloc>
+      <xloc>384</xloc>
+      <yloc>1120</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -331,8 +331,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>144</yloc>
+      <xloc>384</xloc>
+      <yloc>688</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -360,8 +360,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>304</yloc>
+      <xloc>384</xloc>
+      <yloc>848</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -387,8 +387,8 @@ target_language: "${target_language}"</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>144</yloc>
+      <xloc>384</xloc>
+      <yloc>176</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -407,8 +407,8 @@ target_language: "${target_language}"</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>528</xloc>
-      <yloc>144</yloc>
+      <xloc>384</xloc>
+      <yloc>512</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -423,8 +423,8 @@ target_language: "${target_language}"</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>144</yloc>
+      <xloc>384</xloc>
+      <yloc>336</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -436,8 +436,8 @@ target_language: "${target_language}"</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>272</yloc>
+      <xloc>848</xloc>
+      <yloc>336</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -475,8 +475,8 @@ target_language: "${target_language}"</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
-      <yloc>432</yloc>
+      <xloc>384</xloc>
+      <yloc>976</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
