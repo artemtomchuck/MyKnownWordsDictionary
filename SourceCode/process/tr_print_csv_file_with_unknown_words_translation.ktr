@@ -435,6 +435,29 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>This is needed for better visibility in csv viewer https://flashcards.world/
+Otherwise for some reason long text is not visible at the very end.
+Additional new line shown adjust relevant text to be visible</note>
+      <xloc>672</xloc>
+      <yloc>336</yloc>
+      <width>771</width>
+      <heigth>106</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>12</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>dictionary_db</name>
@@ -504,18 +527,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Get current_run_timestamp</from>
+      <to>Get output_dir_fullpath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Get output_csv_filename_fullpath</from>
       <to>Select columns for output csv</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Read unknown words translation</from>
-      <to>Get current_run_timestamp</to>
+      <to>Get new_line_separator</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get current_run_timestamp</from>
-      <to>Get output_dir_fullpath</to>
+      <from>Get new_line_separator</from>
+      <to>Add newline to the end of translation_and_meaning</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add newline to the end of translation_and_meaning</from>
+      <to>Get current_run_timestamp</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -554,7 +587,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>192</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -599,7 +632,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>448</yloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -644,7 +677,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>576</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -683,7 +716,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>336</yloc>
+      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -832,7 +865,7 @@ order by
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>704</yloc>
+      <yloc>976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -913,7 +946,79 @@ order by
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>832</yloc>
+      <yloc>1120</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get new_line_separator</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>new_line_separator</name>
+        <variable>${line.separator}</variable>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add newline to the end of translation_and_meaning</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>translation_and_meaning</field_name>
+      <formula_string>[translation_and_meaning] &amp; [new_line_separator]</formula_string>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field>translation_and_meaning</replace_field>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
