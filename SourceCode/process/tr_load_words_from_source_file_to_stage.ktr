@@ -9,11 +9,6 @@
     <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
-      <parameter>
-        <name>source_language_alphabet</name>
-        <default_value>abcdefghijklmnopqrstuvwxyz</default_value>
-        <description>TODO: make it a parameter which is parametrized</description>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -530,6 +525,47 @@
     </hop>
   </order>
   <step>
+    <name>All symbols to lower case</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>file_content_lower_case</field_name>
+      <calc_type>LOWER_CASE</calc_type>
+      <field_a>file_content</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Count number_of_input_word_occurrence</name>
     <type>GroupBy</type>
     <description/>
@@ -676,99 +712,6 @@
     </GUI>
   </step>
   <step>
-    <name>Truncate and insert into stg_load_new_words_from_new_source</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>dictionary_db</connection>
-    <schema/>
-    <table>stg_load_new_words_from_new_source</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>input_word</column_name>
-        <stream_name>input_word</stream_name>
-      </field>
-      <field>
-        <column_name>number_of_input_word_occurrence</column_name>
-        <stream_name>number_of_input_word_occurrence</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1040</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>All symbols to lower case</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>file_content_lower_case</field_name>
-      <calc_type>LOWER_CASE</calc_type>
-      <field_a>file_content</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Replace to ";" every symbol outside source_language_alphabet</name>
     <type>ReplaceString</type>
     <description/>
@@ -878,6 +821,58 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Truncate and insert into stg_load_new_words_from_new_source</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dictionary_db</connection>
+    <schema/>
+    <table>stg_load_new_words_from_new_source</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>input_word</column_name>
+        <stream_name>input_word</stream_name>
+      </field>
+      <field>
+        <column_name>number_of_input_word_occurrence</column_name>
+        <stream_name>number_of_input_word_occurrence</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
