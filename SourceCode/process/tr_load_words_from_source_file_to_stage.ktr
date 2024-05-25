@@ -489,17 +489,22 @@
   </connection>
   <order>
     <hop>
-      <from>Load file content in memory from input folder</from>
-      <to>Replace to ";" every symbol which is not English letter</to>
+      <from>Count number_of_input_word_occurrence</from>
+      <to>Remove empty word</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Replace to ";" every symbol which is not English letter</from>
-      <to>All symbols to lower case</to>
+      <from>Remove empty word</from>
+      <to>Truncate and insert into stg_load_new_words_from_new_source</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>All symbols to lower case</from>
+      <to>Replace to ";" every symbol outside source_language_alphabet</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace to ";" every symbol outside source_language_alphabet</from>
       <to>Split text into words</to>
       <enabled>Y</enabled>
     </hop>
@@ -509,18 +514,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Load file content in memory from input folder</from>
+      <to>All symbols to lower case</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Sort by input_word</from>
       <to>Count number_of_input_word_occurrence</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Count number_of_input_word_occurrence</from>
-      <to>Remove empty word</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Remove empty word</from>
-      <to>Truncate and insert into stg_load_new_words_from_new_source</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -537,9 +537,9 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>file_content_only_english_letters_lower_case</field_name>
+      <field_name>file_content_lower_case</field_name>
       <calc_type>LOWER_CASE</calc_type>
-      <field_a>file_content_only_english_letters</field_a>
+      <field_a>file_content</field_a>
       <field_b/>
       <field_c/>
       <value_type>String</value_type>
@@ -560,8 +560,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>240</yloc>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -606,8 +606,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>560</yloc>
+      <xloc>352</xloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -671,7 +671,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>352</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -706,13 +706,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>656</yloc>
+      <xloc>352</xloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Replace to ";" every symbol which is not English letter</name>
+    <name>Replace to ";" every symbol outside source_language_alphabet</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -724,10 +724,10 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>file_content</in_stream_name>
-        <out_stream_name>file_content_only_english_letters</out_stream_name>
+        <in_stream_name>file_content_lower_case</in_stream_name>
+        <out_stream_name>file_content_only_english_letters_lower_case</out_stream_name>
         <use_regex>yes</use_regex>
-        <replace_string>[^a-z]</replace_string>
+        <replace_string>[^${source_language_alphabet}]</replace_string>
         <replace_by_string>;</replace_by_string>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
@@ -745,8 +745,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>128</yloc>
+      <xloc>352</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -787,8 +787,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>448</yloc>
+      <xloc>352</xloc>
+      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -819,8 +819,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>352</yloc>
+      <xloc>352</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -871,8 +871,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>768</yloc>
+      <xloc>352</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

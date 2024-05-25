@@ -305,8 +305,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>16</yloc>
+      <xloc>288</xloc>
+      <yloc>48</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -334,8 +334,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
-      <yloc>432</yloc>
+      <xloc>912</xloc>
+      <yloc>528</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -346,8 +346,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>768</yloc>
+      <xloc>288</xloc>
+      <yloc>1072</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -389,8 +389,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>496</xloc>
-      <yloc>128</yloc>
+      <xloc>912</xloc>
+      <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -398,7 +398,7 @@
       <description/>
       <type>ZIP_FILE</type>
       <attributes/>
-      <zipfilename>${application_local_data_dir_fullpath}/archive/${current_run_timestamp}.zip</zipfilename>
+      <zipfilename>${application_local_data_dir_fullpath}/archive/source_language/${source_language}/${current_run_timestamp}.zip</zipfilename>
       <compressionrate>1</compressionrate>
       <ifzipfileexists>2</ifzipfileexists>
       <wildcard/>
@@ -419,8 +419,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>432</yloc>
+      <xloc>288</xloc>
+      <yloc>528</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -439,8 +439,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>544</yloc>
+      <xloc>288</xloc>
+      <yloc>720</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -453,8 +453,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>656</yloc>
+      <xloc>288</xloc>
+      <yloc>896</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -477,8 +477,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>128</yloc>
+      <xloc>288</xloc>
+      <yloc>192</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -492,8 +492,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
-      <yloc>256</yloc>
+      <xloc>288</xloc>
+      <yloc>352</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
@@ -586,10 +586,10 @@
 Therefore as a workaround: we delete input folder and then recreate it.
 There is strict assumption that once this job started, there should be no writing from any external process into this input folder.
 Otherwise some new input may be lost if new input appeared in input folder after this job started and old input was already read into memory.</note>
-      <xloc>352</xloc>
-      <yloc>576</yloc>
-      <width>954</width>
-      <heigth>90</heigth>
+      <xloc>576</xloc>
+      <yloc>704</yloc>
+      <width>1140</width>
+      <heigth>106</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>

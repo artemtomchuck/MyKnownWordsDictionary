@@ -413,7 +413,7 @@
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
     <feedback_shown>Y</feedback_shown>
-    <feedback_size>50000</feedback_size>
+    <feedback_size>100</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
@@ -456,10 +456,10 @@ Detail explanation of parameters:
 -d: enables dictionary mode of utility
 -show-original n: do not show original text because we already show it in translation part
 -show-translation n: we already show translation in translation mode. In dictionary mode we will show only definition in original language</note>
-      <xloc>512</xloc>
-      <yloc>192</yloc>
-      <width>774</width>
-      <heigth>328</heigth>
+      <xloc>1040</xloc>
+      <yloc>320</yloc>
+      <width>1153</width>
+      <heigth>492</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -608,8 +608,8 @@ Detail explanation of parameters:
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>608</yloc>
+      <xloc>1008</xloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -659,8 +659,8 @@ Detail explanation of parameters:
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>256</yloc>
+      <xloc>464</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -698,8 +698,8 @@ Detail explanation of parameters:
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>336</yloc>
+      <xloc>464</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -756,8 +756,8 @@ var command_line_call = 'bash -c "' + trans_utility_translation_part + ' 2>&amp;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>432</yloc>
+      <xloc>464</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -799,7 +799,7 @@ var command_line_call = 'bash -c "' + trans_utility_translation_part + ' 2>&amp;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>896</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -897,7 +897,7 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>464</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -931,8 +931,8 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>160</yloc>
+      <xloc>464</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -969,8 +969,8 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>704</yloc>
+      <xloc>464</xloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1003,7 +1003,7 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>1376</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1037,8 +1037,8 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>528</yloc>
+      <xloc>464</xloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1093,8 +1093,8 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>816</yloc>
+      <xloc>464</xloc>
+      <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1137,8 +1137,8 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>608</yloc>
+      <xloc>464</xloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

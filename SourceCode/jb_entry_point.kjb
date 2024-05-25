@@ -11,7 +11,12 @@
   <modified_user>-</modified_user>
   <modified_date>2022/09/22 00:09:10.221</modified_date>
   <parameters>
-    </parameters>
+    <parameter>
+      <name>configuration_file_fullpath</name>
+      <default_value/>
+      <description>Path to configuration file. If not provided then default value is used "${env.APPDATA}\MyKnownWordsDictionary\configuration.properties"</description>
+    </parameter>
+  </parameters>
   <slaveservers>
     </slaveservers>
   <job-log-table>

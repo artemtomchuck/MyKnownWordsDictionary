@@ -438,7 +438,7 @@
   </notepads>
   <order>
     <hop>
-      <from>Read configuration file</from>
+      <from>Read configuration filename</from>
       <to>Switch / case</to>
       <enabled>Y</enabled>
     </hop>
@@ -472,6 +472,31 @@
       <to>Set target_language variable</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Calc configuration_file_fullpath</from>
+      <to>Select configuration_file_fullpath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get variables</from>
+      <to>Convert empty variables into null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Convert empty variables into null</from>
+      <to>Calc configuration_file_fullpath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select configuration_file_fullpath</from>
+      <to>Log configuration file location</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Log configuration file location</from>
+      <to>Read configuration filename</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Abort due to unexpected variable in config</name>
@@ -497,13 +522,105 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>144</yloc>
+      <xloc>1456</xloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Read configuration file</name>
+    <name>Calc configuration_file_fullpath</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>configuration_file_fullpath</field_name>
+      <calc_type>NVL</calc_type>
+      <field_a>configuration_file_fullpath_param</field_a>
+      <field_b>configuration_file_fullpath_default</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>configuration_file_fullpath_param</name>
+        <variable>${configuration_file_fullpath}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>configuration_file_fullpath_default</name>
+        <variable>${env.APPDATA}/${application_name}/configuration.properties</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read configuration filename</name>
     <type>PropertyInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -517,10 +634,10 @@
     <encoding>UTF-8</encoding>
     <include>N</include>
     <include_field/>
-    <filename_Field/>
+    <filename_Field>configuration_file_fullpath</filename_Field>
     <rownum>N</rownum>
     <isaddresult>Y</isaddresult>
-    <filefield>N</filefield>
+    <filefield>Y</filefield>
     <rownum_field/>
     <resetrownumber>N</resetrownumber>
     <resolvevaluevariable>N</resolvevaluevariable>
@@ -528,10 +645,10 @@
     <ini_section_field/>
     <section/>
     <file>
-      <name>${env.APPDATA}\${application_name}\configuration.properties</name>
+      <name/>
       <exclude_filemask/>
       <filemask/>
-      <file_required>Y</file_required>
+      <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
     <fields>
@@ -580,8 +697,39 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>32</yloc>
+      <xloc>720</xloc>
+      <yloc>736</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select configuration_file_fullpath</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>configuration_file_fullpath</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -614,8 +762,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>144</yloc>
+      <xloc>304</xloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -648,8 +796,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>256</yloc>
+      <xloc>400</xloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -682,8 +830,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>368</yloc>
+      <xloc>544</xloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -716,8 +864,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>368</yloc>
+      <xloc>912</xloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -750,8 +898,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>240</yloc>
+      <xloc>1104</xloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -804,8 +952,78 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>144</yloc>
+      <xloc>720</xloc>
+      <yloc>880</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Convert empty variables into null</name>
+    <type>NullIf</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>configuration_file_fullpath_param</name>
+        <value/>
+      </field>
+      <field>
+        <name>configuration_file_fullpath_default</name>
+        <value/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Log configuration file location</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_minimal</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>config file to be used</logmessage>
+    <fields>
+      <field>
+        <name>configuration_file_fullpath</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

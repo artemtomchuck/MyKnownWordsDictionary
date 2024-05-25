@@ -489,7 +489,7 @@
   </connection>
   <order>
     <hop>
-      <from>Read source_language_id</from>
+      <from>Read source_language</from>
       <to>No language found</to>
       <enabled>Y</enabled>
     </hop>
@@ -499,8 +499,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Read source_language_id</from>
-      <to>Set source_language_id</to>
+      <from>Read source_language</from>
+      <to>Set source_language_id, source_language_alphabet</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -528,8 +528,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>32</yloc>
+      <xloc>960</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -553,13 +553,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>32</yloc>
+      <xloc>576</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Read source_language_id</name>
+    <name>Read source_language</name>
     <type>TableInput</type>
     <description/>
     <distribute>N</distribute>
@@ -571,11 +571,13 @@
     </partitioning>
     <connection>dictionary_db</connection>
     <sql>select
-	l.language_id as source_language_id
+	l.language_id as source_language_id,
+	l.language_alphabet as source_language_alphabet
 from
 	languages l
 where
-	l.language_name = '${source_language}'</sql>
+	l.language_name = '${source_language}'
+</sql>
     <limit>1</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -592,13 +594,13 @@ where
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>32</yloc>
+      <xloc>272</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Set source_language_id</name>
+    <name>Set source_language_id, source_language_alphabet</name>
     <type>SetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -615,6 +617,12 @@ where
         <variable_type>ROOT_JOB</variable_type>
         <default_value/>
       </field>
+      <field>
+        <field_name>source_language_alphabet</field_name>
+        <variable_name>source_language_alphabet</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+      </field>
     </fields>
     <use_formatting>Y</use_formatting>
     <attributes/>
@@ -626,8 +634,8 @@ where
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>176</yloc>
+      <xloc>272</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
