@@ -26,7 +26,7 @@ Just extract unknown words from book and learn them. It will be easier to learn 
 
 # How does it work?
 * you provide input text from your book (or subtitles from film) in txt format into input folder
-* program will read all text files in input folder. There is no check of files whether it is text file or not (neither content check, not file extension check). So please provide only files which can be interpeted as text. Program scans the whole input folder including all subfolders (this is in order to conveniently translate subtitles of TV series which are typically grouped into folders by seasons)
+* program will read all text files in input folder. There is no check of files whether it is text file or not (neither content check, nor file extension check). So please provide only files which can be interpeted as text. Program scans the whole input folder including all subfolders (this is in order to conveniently translate subtitles of TV series which are typically grouped into folders by seasons)
 * program will extract all words from those txt files and show only unique words within input
 * program will compare input words with database of your already known words
 * program will translate only unknown words and provide output csv file with translation
@@ -44,19 +44,23 @@ Just extract unknown words from book and learn them. It will be easier to learn 
   $ [sudo] make install
 </pre>
 * copy content of SourceCode folder into your desired install folder (e.g. into C:\MyKnownWordsDictionary)
-* copy Configuration\ConfigurationFile\configuration.properties file into C:\Users\<username>\AppData\Roaming\MyKnownWordsDictionary folder (create this folder manually)
+* copy Configuration\ConfigurationFile\configuration.properties file into C:\Users\\<username\>\AppData\Roaming\MyKnownWordsDictionary folder (create this folder manually)
 * provide your values into this configuration file. Description of each parameter is also available in comments of configuration file
   * set current_dictionary_db_file_fullpath to value where your db is located. DB template can be found in Configuration\DatabaseBootstrap. Copy this db template to your folder where you are going to store current db and all db history. This path should be set into current_dictionary_db_file_fullpath
   * set input_dir_fullpath to folder path where you typically will provide your input files
   * set output_dir_fullpath to folder path where translated output for new words is stored
   * set source_language to language of your source text in input folder
   * set target_language to language of your translated text in output folder
+* another possibility is to provide path to configuration path via parameter configuration_file_fullpath
+  * this gives possibility to support one configuration file per each translation pair (e.g. English->Russian, German->Russian etc)
+  * example of configuration_file_fullpath usage can be found in C:\MyKnownWordsDictionary\entry_point.cmd.template. You can create entry_point for each config (translation pair) you use
+  * if configuration_file_fullpath is not provided then default value is used "C:\Users\\<username\>\AppData\Roaming\MyKnownWordsDictionary\configuration.properties"
 * after providing all necessary parameters into configuration file and providing input files run the program by either
-  * run file C:\MyKnownWordsDictionary\entry_point.cmd
+  * run file C:\MyKnownWordsDictionary\entry_point.cmd.template
   * or via executing job jb_entry_point.kjb in PDI Spoon (or in PDI kitchen)
 * check results in output_dir_fullpath folder (concrete folder location is defined in your configuration file)
-* you can also see execution logs in C:\Users\<username>\AppData\Local\MyKnownWordsDictionary\logs folder. Each program run creates new log file with respective timestamp. If something works unexpectedly then it is the first place to check
-* processed input is archived into C:\Users\<username>\AppData\Local\MyKnownWordsDictionary\archive folder. Each program run creates new archive file with respective timestamp
+* you can also see execution logs in C:\Users\\<username\>\AppData\Local\MyKnownWordsDictionary\logs folder. Each program run creates new log file with respective timestamp. If something works unexpectedly then it is the first place to check
+* processed input is archived into C:\Users\\<username\>\AppData\Local\MyKnownWordsDictionary\archive\source_language\\<your_source_language\> folder. Each program run creates new archive file with respective timestamp
 * once this mechanism is configured, the next run will require only providing new input files and runnning entry point
 
 # Output
