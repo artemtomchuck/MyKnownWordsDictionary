@@ -438,7 +438,7 @@
   </notepads>
   <order>
     <hop>
-      <from>Read configuration file</from>
+      <from>Read configuration filename</from>
       <to>Switch / case</to>
       <enabled>Y</enabled>
     </hop>
@@ -478,11 +478,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select configuration_file_fullpath</from>
-      <to>Read configuration file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Get variables</from>
       <to>Convert empty variables into null</to>
       <enabled>Y</enabled>
@@ -490,6 +485,16 @@
     <hop>
       <from>Convert empty variables into null</from>
       <to>Calc configuration_file_fullpath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select configuration_file_fullpath</from>
+      <to>Log configuration file location</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Log configuration file location</from>
+      <to>Read configuration filename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -518,7 +523,7 @@
     </remotesteps>
     <GUI>
       <xloc>1456</xloc>
-      <yloc>768</yloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -615,7 +620,7 @@
     </GUI>
   </step>
   <step>
-    <name>Read configuration file</name>
+    <name>Read configuration filename</name>
     <type>PropertyInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -693,7 +698,7 @@
     </remotesteps>
     <GUI>
       <xloc>720</xloc>
-      <yloc>624</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -758,7 +763,7 @@
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>768</yloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -792,7 +797,7 @@
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>976</yloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -826,7 +831,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1136</yloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -860,7 +865,7 @@
     </remotesteps>
     <GUI>
       <xloc>912</xloc>
-      <yloc>1136</yloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -894,7 +899,7 @@
     </remotesteps>
     <GUI>
       <xloc>1104</xloc>
-      <yloc>960</yloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -948,7 +953,7 @@
     </remotesteps>
     <GUI>
       <xloc>720</xloc>
-      <yloc>768</yloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -984,6 +989,41 @@
     <GUI>
       <xloc>720</xloc>
       <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Log configuration file location</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_minimal</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>config file to be used</logmessage>
+    <fields>
+      <field>
+        <name>configuration_file_fullpath</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
