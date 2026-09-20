@@ -436,12 +436,35 @@
   </info>
   <notepads>
     <notepad>
-      <note>This is needed for better visibility in csv viewer https://flashcards.world/
+      <note>Additional new line is needed for better visibility in csv viewer https://flashcards.world/
 Otherwise for some reason long text is not visible at the very end.
-Additional new line shown adjust relevant text to be visible</note>
-      <xloc>672</xloc>
-      <yloc>336</yloc>
-      <width>771</width>
+Additional new line adjusts relevant text to be visible</note>
+      <xloc>1024</xloc>
+      <yloc>288</yloc>
+      <width>934</width>
+      <heigth>106</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>12</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Sequence is needed because csv viewer https://flashcards.world/ can lose its internal sequence.
+Whille it loses sequence number in UI, still internally the correct next word is shown.
+That is why instead of relying on sequence from UI we can look into this custom sequence in CSV.</note>
+      <xloc>1024</xloc>
+      <yloc>1168</yloc>
+      <width>1059</width>
       <heigth>106</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>12</fontsize>
@@ -532,11 +555,6 @@ Additional new line shown adjust relevant text to be visible</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get output_csv_filename_fullpath</from>
-      <to>Select columns for output csv</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Read unknown words translation</from>
       <to>Get new_line_separator</to>
       <enabled>Y</enabled>
@@ -549,6 +567,26 @@ Additional new line shown adjust relevant text to be visible</note>
     <hop>
       <from>Add newline to the end of translation_and_meaning</from>
       <to>Get current_run_timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get output_csv_filename_fullpath</from>
+      <to>Get total_num_of_unknown_words</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get total_num_of_unknown_words</from>
+      <to>Add unknown_word_seq_num</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add unknown_word_seq_num</from>
+      <to>Calc unknown_word_and_sequence</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calc unknown_word_and_sequence</from>
+      <to>Select columns for output csv</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -917,13 +955,16 @@ order by
     </partitioning>
     <fields>
       <field>
-        <name>unknown_word</name>
+        <name>unknown_word_and_sequence</name>
+        <rename/>
       </field>
       <field>
         <name>translation_and_meaning</name>
+        <rename/>
       </field>
       <field>
         <name>output_csv_filename_fullpath</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -937,7 +978,7 @@ order by
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>976</yloc>
+      <yloc>1376</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -984,7 +1025,7 @@ order by
     </file>
     <fields>
       <field>
-        <name>unknown_word</name>
+        <name>unknown_word_and_sequence</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1008,6 +1049,129 @@ order by
         <precision>-1</precision>
       </field>
     </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1520</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get total_num_of_unknown_words</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>Y</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      </group>
+    <fields>
+      <field>
+        <aggregate>total_num_of_unknown_words</aggregate>
+        <subject/>
+        <type>COUNT_ANY</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>976</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calc unknown_word_and_sequence</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var unknown_word_and_sequence = unknown_word + "; " + unknown_word_seq_num + " out of " + total_num_of_unknown_words
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>unknown_word_and_sequence</name>
+        <rename>unknown_word_and_sequence</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1232</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add unknown_word_seq_num</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>unknown_word_seq_num</valuename>
+    <use_database>N</use_database>
+    <connection>dictionary_db</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
